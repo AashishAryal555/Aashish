@@ -1,0 +1,133 @@
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #f8f9fa;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fcee09;
+  text-shadow: 0 0 8px #fcee09, 0 0 12px #000;
+}
+
+textarea {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  color: #fff;
+  font-size: 1.2rem;
+  resize: vertical;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #fcee09;
+  outline: none;
+  box-shadow: 0 0 8px #fcee09;
+}
+
+button {
+  margin-top: 15px;
+  background: #fcee09;
+  color: #000;
+  font-weight: bold;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 15px rgba(252, 238, 9, 0.3);
+}
+
+button:hover {
+  background: #fff200;
+  transform: scale(1.05);
+}
+
+.emoji-picker {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+}
+
+input[placeholder="Search"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  backdrop-filter: blur(4px);
+}
+
+input[placeholder="Search"]:focus {
+  outline: none;
+  border: 1px solid #fcee09;
+}
+
+.emoji-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 1.8rem;
+  justify-content: center;
+}
+
+.emoji-grid span {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.emoji-grid span:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.2);
+}
+
+.frequently-used {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.frequently-used strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #00e0ff;
+  margin-bottom: 10px;
+}
+.frequently-used span {
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+.frequently-used span:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}               
