@@ -1,16 +1,10 @@
+import React from 'react'
+import Path from './Path.jsx';
 
-import "./App.css";
-import Focusinput from "./Day 5/Focusinput";
+export default function App() {
+  return (
 
-
-
-
-
-function App(){
-    return <div className="App"><Focusinput/></div>
-
-
+      <Path/>
     
+  );
 }
-
-export default App;
