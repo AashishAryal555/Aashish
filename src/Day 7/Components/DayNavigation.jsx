@@ -1,44 +1,48 @@
-import React, { useState } from 'react';
-// import '../Styles/style.css';
-export default function DayNavagation() {
+import React, { useState } from "react";
+import "../Styles/DayNavigation.css";
+import { Link } from "react-router-dom";
 
- 
-    const [open, setOpen] = useState(false);
+const DayNavigation = () => {
+	const [openDropdown, setOpenDropdown] = useState(null);
 
-  const toggleMenu = () => {
-    setOpen(!open);
-  };
+	const handleToggle = (day) => {
+		setOpenDropdown((prev) => (prev === day ? null : day));
+	};
 
-  const Day2Options = [
-    "Array",
-    "Calculator",
-    "Condition",
-    "Multimlication Table",
-    "Variable",
-  ]
-  
-  return (
-    <div>
-      <nav  className='day-nav'>
-        <ul className='day-nav-list'>
-          <li className='day-nav-item'>
-            <a href='#' className='day-nav-link' onClick={toggleMenu}>
-              Day 2
-            </a>
-            {open && (
-              <ul className='dropdown-menu'>
-                {Day2Options.map((option, index) => (
-                  <li key={index} className='dropdown-item'>
-                    <a href={`#${option.toLowerCase()}`} className='dropdown-link'>
-                      {option}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        </ul>
-      </nav>
-    </div>
-  )
-}
+	const dayContents = {
+		"Day 1": ["Background Changer",],
+		"Day 2": ["Array","Calculator","Condition","Multiplication","Variable",],
+		"Day 3": ["Grade","Merge", "Object", "Userlist"],
+		"Day 4": [ "Emoji Picker", "Users"],
+		"Day 5": ["Focus Input","Lifting State","Login Form",],
+		"Day 6": ["Home", "View User"],
+    "Day 8 ": ["To Do"],
+	};
+
+	// Convert label to path-friendly string
+	const formatPath = (day, label) =>
+		`/${day.toLowerCase().replace(/\s+/g, "")}/${label
+			.toLowerCase()
+			.replace(/\s+/g, "-")}`;
+
+	return (
+		<nav className="navbar">
+			<ul className="nav-list">
+				{Object.entries(dayContents).map(([day, topics]) => (
+					<li className="nav-item" key={day} onClick={() => handleToggle(day)}>
+						{day}
+						<ul className={`submenu ${openDropdown === day ? "open" : ""}`}>
+							{topics.map((topic, index) => (
+								<Link to={formatPath(day, topic)} key={index}>
+									<li className="submenu-item">{topic}</li>
+								</Link>
+							))}
+						</ul>
+					</li>
+				))}
+			</ul>
+		</nav>
+	);
+};
+
+export default DayNavigation;

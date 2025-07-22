@@ -1,50 +1,104 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #1e1e2f, #27293d);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-blur: 20px;
+  --border-glow: rgba(255, 255, 255, 0.12);
+  --box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --text-color: #f1f5f9;
+  --accent: #38bdf8;
+  --subtitle: #94a3b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  margin: 0;
   font-family: 'Rubik', sans-serif;
-  background: linear-gradient(135deg, #c3ecf7, #a8edea);
-  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  transition: background 0.6s ease-in-out;
+  overflow-x: hidden;
 }
 
 .app-container {
   width: 100%;
-  max-width: 420px;
-  padding: 20px;
+  max-width: 440px;
+  padding: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 .login-wrapper {
-  background: rgba(255, 255, 255, 0.17);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 16px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
-  padding: 48px 36px;
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  padding: 48px 40px;
   width: 100%;
   text-align: center;
+  border: 1px solid var(--border-glow);
+  animation: glassPop 0.8s ease;
+  transition: all 0.3s ease;
+}
+
+.login-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
 }
 
 .app-logo {
-  width: 60px;
+  width: 70px;
   margin-bottom: 24px;
+  animation: logoRise 0.8s ease;
+  filter: drop-shadow(0 0 4px var(--accent));
 }
 
 .app-title {
-  font-size: 32px;
-  font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 8px;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
 }
 
 .app-subtitle {
-  font-size: 15px;
-  color: #4b5563;
-  margin-bottom: 32px;
+  font-size: 16px;
+  color: var(--subtitle);
+  margin-bottom: 36px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes glassPop {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes logoRise {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

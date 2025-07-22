@@ -7,7 +7,6 @@ function Todo() {
   const [error, setError] = useState("");
   const [newTodo, setNewTodo] = useState("");
 
-  // Load initial todos from dummyjson
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -24,7 +23,6 @@ function Todo() {
     fetchTodos();
   }, []);
 
-  // Add new todo (with your specified structure)
   const handleAdd = async () => {
     if (newTodo.trim() === "") return;
 
@@ -35,14 +33,14 @@ function Todo() {
     };
 
     try {
-      const response = await axios.post("https://dummyjson.com/todos/add",
+      const response = await axios.post(
+        "https://dummyjson.com/todos/add",
         newTask,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
 
-      // Simulate adding to UI
       setTodos((prev) => [response.data, ...prev]);
       setNewTodo("");
     } catch (err) {
@@ -51,7 +49,6 @@ function Todo() {
     }
   };
 
-  // Delete todo
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://dummyjson.com/todos/${id}`);
@@ -59,6 +56,27 @@ function Todo() {
     } catch (err) {
       console.error("Error deleting todo:", err);
       alert("Failed to delete todo.");
+    }
+  };
+
+  const handleToggleCheckbox = async (id, currentStatus) => {
+    try {
+      const response = await axios.put(
+        `https://dummyjson.com/todos/${id}`,
+        { completed: !currentStatus },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, completed: response.data.completed } : todo
+        )
+      );
+    } catch (err) {
+      console.error("Error updating status:", err);
+      alert("Failed to update todo status.");
     }
   };
 
@@ -116,14 +134,21 @@ function Todo() {
               boxShadow: "2px 2px 6px rgba(0,0,0,0.1)",
             }}
           >
-            <span
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-                fontSize: "16px",
-              }}
-            >
-              {todo.todo}
-            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => handleToggleCheckbox(todo.id, todo.completed)}
+              />
+              <span
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                  fontSize: "16px",
+                }}
+              >
+                {todo.todo}
+              </span>
+            </div>
             <button
               onClick={() => handleDelete(todo.id)}
               style={{

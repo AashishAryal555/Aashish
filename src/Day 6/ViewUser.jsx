@@ -14,7 +14,7 @@ function ViewUser() {
     }, []);
 
     const handleDetailClick = (user) => {
-        navigate(`/userdetails/${user}`);
+        navigate(`/day6/userDetails/${user}`);
     
     }; 
 
